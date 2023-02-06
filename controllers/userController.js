@@ -1,9 +1,14 @@
-
+var session;
 
 export function getuser(req, res) {
-  console.log("11");
+  session = req.session;
+  if (session.Emailid) {
+    res.render("index");
+  } else {
+    console.log("11");
 
-  res.render("login");
+    res.render("login");
+  }
 }
 
 let user = {
@@ -13,7 +18,11 @@ let user = {
 
 export function postuser(req, res) {
   console.log(req.body);
+  const { Name, Email, Password } = req.body;
   if (req.body.Email === user.Email && req.body.Password === user.Password) {
+    session = req.session;
+    session.Emailid = req.body.Email;
+    console.log(req.session);
     res.render("index");
     console.log("10");
   } else {
@@ -37,13 +46,6 @@ export function postlogin(req, res) {
 }
 
 export function userlogout(req, res) {
-  res.render("login");
+  req.session.destroy();
+  res.redirect("/");
 }
-
-// function adduser(data) {
-//     console.log('hai');
-//     const user= new User(data)
-//      user.save().then(()=>{
-//         console.log("user saved");
-//     })
-// }

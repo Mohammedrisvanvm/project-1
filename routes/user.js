@@ -7,12 +7,12 @@ import {
   postuser,
   userlogout,
 } from "../controllers/userController.js";
-import { sessioncookie } from "../session/session.js";
+
 
 var router = express.Router();
 
 router.post("/", postuser);
-router.get("/",sessioncookie, getuser);
+router.get("/", getuser);
 router.get("/signup", getsignup);
 router.post("/signup", postsignup);
 router.post("/login", postlogin);
