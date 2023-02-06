@@ -18,7 +18,7 @@ let user = {
 
 export function postuser(req, res) {
   console.log(req.body);
-  const { Name, Email, Password } = req.body;
+  const { Email, Password } = req.body;
   if (req.body.Email === user.Email && req.body.Password === user.Password) {
     session = req.session;
     session.Emailid = req.body.Email;

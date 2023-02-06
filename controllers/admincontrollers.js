@@ -9,7 +9,7 @@ export function getadmin(req, res) {
   }
 }
 export function adduser(req, res) {
-  res.render("adduser") / admin / adminedit;
+  res.render("adduser");
 }
 let admin = {
   Name: "risvan",
@@ -35,8 +35,14 @@ export function postadmin(req, res, next) {
   }
 }
 export function adminhome(req, res) {
+
+
   res.render("adminhome");
 }
 export function adminedit(req, res) {
   res.render("adminedit");
+}
+export function adminlogout(req, res) {
+  req.session.destroy();
+  res.redirect("/admin");
 }
