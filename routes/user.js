@@ -1,0 +1,21 @@
+import express, { Router } from "express";
+import {
+  getsignup,
+  getuser,
+  postlogin,
+  postsignup,
+  postuser,
+  userlogout,
+} from "../controllers/userController.js";
+import { sessioncookie } from "../session/session.js";
+
+var router = express.Router();
+
+router.post("/", postuser);
+router.get("/",sessioncookie, getuser);
+router.get("/signup", getsignup);
+router.post("/signup", postsignup);
+router.post("/login", postlogin);
+router.get("/logout", userlogout);
+
+export default router;
