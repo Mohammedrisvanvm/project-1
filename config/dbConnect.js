@@ -2,15 +2,11 @@ import mongoose from "mongoose";
 
 
 
-mongoose.set('strictQuery', false);
-
-async function dbConnect(){
-    
-    
-    await mongoose.connect('mongodb://127.0.0.1/crudApp').then(console.log("db connected"))
+ function dbConnect() {
+    mongoose.set("strictQuery", false);
+  mongoose
+    .connect("mongodb://127.0.0.1:27017/crudApp")
+    .then(console.log("db connected  !!!!"))
+    .catch((err) => console.log(err));
 }
-
 export default dbConnect
-
-
-

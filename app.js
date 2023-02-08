@@ -8,9 +8,12 @@ import logger from "morgan";
 import session from "express-session";
 
 import dbConnect from "./config/dbConnect.js";
+
+
+
  const app=express();
 
-dbConnect();
+dbConnect()
 const __dirname = path.resolve();
 
 //ejs engine

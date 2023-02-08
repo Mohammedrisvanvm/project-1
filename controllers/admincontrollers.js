@@ -40,7 +40,7 @@ export function adminhome(req, res) {
   res.render("adminhome");
 }
 export function adminedit(req, res) {
-  res.render("adminedit");
+  res.render("adminedit"); 
 }
 export function adminlogout(req, res) {
   req.session.destroy();

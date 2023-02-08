@@ -1,3 +1,6 @@
+import createDocument from "../models/schemaUser.js";
+
+
 var session;
 
 export function getuser(req, res) {
@@ -18,7 +21,10 @@ let user = {
 
 export function postuser(req, res) {
   console.log(req.body);
+
   const { Email, Password } = req.body;
+  
+
   if (req.body.Email === user.Email && req.body.Password === user.Password) {
     session = req.session;
     session.Emailid = req.body.Email;
@@ -33,12 +39,17 @@ export function postuser(req, res) {
 export function getsignup(req, res) {
   res.render("signup");
 }
+
 export function postsignup(req, res) {
   console.log(req.body);
+  
+  createDocument(req.body)
 
-  adduser(req.body);
 
-  res.render("signup");
+
+  
+
+  res.redirect("/");
 }
 export function postlogin(req, res) {
   console.log(req.body);
