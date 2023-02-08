@@ -1,4 +1,5 @@
-import users from "./schemaUser.js";
+import { users } from "./schemaUser.js";
+
 
 //create or insert data
 const createDocument = async (data) => {

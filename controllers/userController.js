@@ -1,5 +1,6 @@
 import createDocument from "../models/inserttodb.js";
-import users from "../models/schemaUser.js";
+import { users } from "../models/schemaUser.js";
+
 
 var session;
 
@@ -9,16 +10,21 @@ export function getuser(req, res) {
     res.render("index");
   } else {
     console.log("11");
-    const noFound="user email or password not found "
+    const noFound = "user email or password not found ";
 
-    res.render("login",{noFound});
+    res.render("login", { noFound });
   }
 }
 
 export async function postuser(req, res) {
   console.log(req.body);
   const aim = await users.find({});
-  console.log(aim);
+
+  // console.log(aim.Password);
+  console.log(req.body.Email);
+  console.log(aim)
+  console.log(aim.Email)
+  console.log(aim.Password)
 
   const { Email, Password } = req.body;
 
@@ -31,7 +37,7 @@ export async function postuser(req, res) {
     console.log("10");
   } else {
     console.log("00");
-   
+
     res.redirect("/");
   }
 }

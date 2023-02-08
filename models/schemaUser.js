@@ -10,7 +10,7 @@ const userSchema = new mongoose.Schema({
     required: true,
   },
   Password: {
-    type: Number,
+    type: String,
     required: true,
   },
   date: {
@@ -20,6 +20,6 @@ const userSchema = new mongoose.Schema({
 });
 
 //create collection
-const users = new mongoose.model("User", userSchema);
+export const users = new mongoose.model("User", userSchema);
 
-export default users;
+

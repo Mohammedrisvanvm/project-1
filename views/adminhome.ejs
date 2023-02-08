@@ -12,6 +12,7 @@
   />
     <title>ADMIN HOME</title>
 </head>
+
 <body>
 <div class=""><a href="/admin/adduser"><button class="btn btn-dark">add user</button></a></div>
 
@@ -23,37 +24,22 @@
             <th scope="col">Name</th>
             <th scope="col">Email</th>
             <th scope="col">Password</th>
-            <th scope="col">phone number</th>
+          
             <th scope="col">action</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>Otto</td>
-            <td>Otto</td>
+            <td><%= userinfo.Name %></td>
+            <td><%= userinfo.Email %></td>
+            <td><%= userinfo.password %></td>
+           
             <td> <a href="/admin/adminedit"><button class="btn btn-secondary">edit</button></a> <button class="btn btn-danger">delete</button></td>
 
 
           </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>Otto</td>
-            <td>Otto</td>
-            <td><button class="btn btn-secondary">edit</button> <button class="btn btn-danger">delete</button></td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td>Larry</td>
-            <td>the Bird</td>
-            <td>Otto</td>
-            <td>Otto</td>
-            <td><button class="btn btn-secondary">edit</button> <button class="btn btn-danger">delete</button></td>
-          </tr>
+          
         </tbody>
       </table>
       <div class="d-flex justify-content-center mt-5"> <a href="/admin/adminlogout"><button class="btn btn-light">logout </button></a></div>
