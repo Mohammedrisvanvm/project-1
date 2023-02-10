@@ -29,17 +29,21 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td><%= userinfo.Name %></td>
-            <td><%= userinfo.Email %></td>
-            <td><%= userinfo.password %></td>
+          <% userinfo.forEach((i,index)=>{ %>
+          <tr>  
+          
+            <th scope="row"><%= index+1 %></th>
+
+          
+            <td><%= i.Name %></td>
+            <td><%= i.Email %></td>
+            <td><%= i.Password %></td>
            
             <td> <a href="/admin/adminedit"><button class="btn btn-secondary">edit</button></a> <button class="btn btn-danger">delete</button></td>
 
-
+              <% }) %>
           </tr>
-          
+    
         </tbody>
       </table>
       <div class="d-flex justify-content-center mt-5"> <a href="/admin/adminlogout"><button class="btn btn-light">logout </button></a></div>
