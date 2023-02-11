@@ -8,6 +8,7 @@ import {
   postadduser,
   postadmin,
   postadminedit,
+  userdelete,
 } from "../controllers/admincontrollers.js";
 
 var router = Express.Router();
@@ -17,8 +18,9 @@ router.get("/", getadmin);
 router.get("/adduser", adduser);
 router.post("/adduser", postadduser);
 router.get("/adminhome", adminhome);
-router.get("/adminedit", adminedit);
-router.post("/adminedit",postadminedit)
+router.get("/adminedit/:id", adminedit);
+router.post("/adminedit/:id",postadminedit)
+router.get("/delete/:id",userdelete)
 router.get("/adminlogout", adminlogout);
 
 export default router;

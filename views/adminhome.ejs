@@ -39,14 +39,15 @@
             <td><%= i.Email %></td>
             <td><%= i.Password %></td>
            
-            <td> <a href="/admin/adminedit"><button class="btn btn-secondary">edit</button></a> <button class="btn btn-danger">delete</button></td>
+            <td> <a href="/admin/adminedit/<%= i._id%>"><button class="btn btn-secondary">edit</button></a> <a href="/admin/delete/<%= i._id%>"><button class="btn btn-danger" onclick="return confirm('are you sure you want to delete?')" >delete</button></a></td>
 
               <% }) %>
           </tr>
     
         </tbody>
       </table>
-      <div class="d-flex justify-content-center mt-5"> <a href="/admin/adminlogout"><button class="btn btn-light">logout </button></a></div>
+      <div class="d-flex justify-content-center mt-5"> <a href="/admin/adminlogout"><button class="btn btn-light" type="submit
+        ">logout </button></a></div>
 </body>
 </html>
 

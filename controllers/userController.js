@@ -2,6 +2,8 @@ import createDocument from "../models/inserttodb.js";
 import { users } from "../models/schemaUser.js";
 
 var session;
+let signuperr=null
+let loginerr=null
 
 export function getuser(req, res) {
   session = req.session;
@@ -10,7 +12,8 @@ export function getuser(req, res) {
   } else {
     console.log("11");
 
-    res.render("login");
+    res.render("login",{loginerr})
+    loginerr=null;
   }
 }
 
@@ -22,9 +25,10 @@ export async function postuser(req, res) {
   console.log(userinfo);
   if (!userinfo) {
     console.log("not");
+    loginerr="Email or password not exist"
   
 
-    res.render("login");
+    res.redirect("/");
   } else {
     if (Email === userinfo.Email && Password === userinfo.Password) {
       session = req.session;
@@ -41,15 +45,30 @@ export async function postuser(req, res) {
   }
 }
 export function getsignup(req, res) {
-  res.render("signup");
+  
+  res.render("signup",{signuperr});
+  signuperr=null
 }
 
-export function postsignup(req, res) {
+export async function postsignup(req, res) {
   console.log(req.body);
+  var Email=req.body.Email
+  const userinfo = await users.findOne({Email });
+  if(!userinfo){
+    createDocument(req.body);
+    res.redirect("/");
+  }
+  else{
+    signuperr="Email already registered"
+    res.redirect("/signup")
 
-  createDocument(req.body);
 
-  res.redirect("/");
+  }
+  
+
+ 
+
+ 
 }
 export function postlogin(req, res) {
   console.log(req.body);
