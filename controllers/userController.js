@@ -18,6 +18,7 @@ export function getuser(req, res) {
 }
 
 export async function postuser(req, res) {
+  console.log(loginerr)
   console.log(req.body);
 
   const { Email, Password } = req.body;
@@ -39,6 +40,7 @@ export async function postuser(req, res) {
       console.log("10");
     } else {
       console.log("00");
+      loginerr="Email or password not exist"
 
       res.redirect("/");
     }

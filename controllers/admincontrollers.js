@@ -1,13 +1,22 @@
 import createDocument from "../models/inserttodb.js";
 import { users } from "../models/schemaUser.js";
+import { search } from "../models/search.js";
 
-var session;
-
+var adminsession;
+var searchData;
 export async function getadmin(req, res) {
-  session = req.session;
-  if (session.Emailid) {
-    const userinfo = await users.find().lean();
-    res.render("adminhome", { userinfo });
+  
+  if (req.session.admin) {
+
+    let userinfo = await users.find().lean();
+    console.log(searchData);
+    if (searchData == null) {
+      res.render("adminhome", { userinfo });
+    } else {
+      userinfo = searchData;
+      res.render("adminhome", { userinfo });
+      searchData = null;
+    }
   } else {
     res.render("adminlogin");
   }
@@ -22,15 +31,15 @@ export function postadduser(req, res) {
   res.redirect("/admin");
 }
 let admin = {
-  Name: "risvan",
-  Email: "risvan@gmail.com",
-  Password: "1234",
+  Name: "admin@gmail.com",
+  Email: "admin@gmail.com",
+  Password: "admin@gmail.com",
 };
 export async function postadmin(req, res, next) {
   const { Name, Email, Password } = req.body;
   if (req.body.Email === admin.Email && req.body.Password === admin.Password) {
-    session = req.session;
-    session.Emailid = req.body.Email;
+    
+    req.session.admin= req.body.Email;
     const userinfo = await users.find();
 
     console.log(200, "success");
@@ -61,36 +70,38 @@ export function adminedit(req, res, next) {
   );
 }
 export function postadminedit(req, res) {
-  users.findByIdAndUpdate
-    ({ _id: req.params.id },
-    req.body,
-    (err, data) => {
-      if (err) {
-        console.log("not get");
-        next(err);
-      } else {
-        console.log("updated successfullyyy");
-        res.redirect("/admin");
-      }
-    })
-  ;
+  users.findByIdAndUpdate({ _id: req.params.id }, req.body, (err, data) => {
+    if (err) {
+      console.log("not get");
+      next(err);
+    } else {
+      console.log("updated successfullyyy");
+      res.redirect("/admin");
+    }
+  });
 }
 export function userdelete(req, res) {
-  users.findByIdAndDelete
-    ({ _id: req.params.id },
-    req.body,
-    (err, data) => {
-      if (err) {
-        console.log("not get");
-        next(err);
-      } else {
-        console.log("deleted successfullyyy");
-        res.redirect("/admin");
-      }
-    })
-  ;
+  users.findByIdAndDelete({ _id: req.params.id }, req.body, (err, data) => {
+    if (err) {
+      console.log("not get");
+      next(err);
+    } else {
+      console.log("deleted successfullyyy");
+      res.redirect("/admin");
+    }
+  });
+}
+
+export async function adminsearch(req, res) {
+  //console.log(req.body.search);
+  const result = await search(req.body.search);
+  // console.log(result);
+  searchData = result;
+
+  res.redirect("/admin");
 }
 export function adminlogout(req, res) {
-  req.session.destroy();
+  req.session.admin=null
+  console.log("hai");
   res.redirect("/admin");
 }

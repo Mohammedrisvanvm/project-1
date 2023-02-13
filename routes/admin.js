@@ -4,6 +4,7 @@ import {
   adminedit,
   adminhome,
   adminlogout,
+  adminsearch,
   getadmin,
   postadduser,
   postadmin,
@@ -22,5 +23,6 @@ router.get("/adminedit/:id", adminedit);
 router.post("/adminedit/:id",postadminedit)
 router.get("/delete/:id",userdelete)
 router.get("/adminlogout", adminlogout);
+router.post("/adminsearch",adminsearch)
 
 export default router;
