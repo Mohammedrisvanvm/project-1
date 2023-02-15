@@ -4,6 +4,7 @@ import { search } from "../models/search.js";
 
 var adminsession;
 var searchData;
+var adminerr
 export async function getadmin(req, res) {
   
   if (req.session.admin) {
@@ -18,7 +19,8 @@ export async function getadmin(req, res) {
       searchData = null;
     }
   } else {
-    res.render("adminlogin");
+    res.render("adminlogin",{adminerr});
+    adminerr=null
   }
 }
 export function adduser(req, res) {
@@ -46,6 +48,7 @@ export async function postadmin(req, res, next) {
     res.render("adminhome", { userinfo });
   } else {
     console.log("failed");
+    adminerr="email or pasword wrong"
     res.redirect("admin");
   }
 }
